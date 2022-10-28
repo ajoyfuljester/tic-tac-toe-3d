@@ -30,12 +30,12 @@ let crossMoves = [[], [], [], []]
 function move(x, y, element) {
     console.table({x, y})
     
-    if (element.innerText != '') return
+    if (element.innerHTML != '') return
     if (isPlayer1Turn) {
-        element.innerText = player1.symbol
+        element.innerHTML = player1.symbol
         player1.moves[y].push(x)
     } else {
-        element.innerText = player2.symbol
+        element.innerHTML = player2.symbol
         player2.moves[y].push(x)
     }
     
