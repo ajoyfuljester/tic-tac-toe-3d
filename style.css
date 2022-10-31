@@ -73,3 +73,12 @@
     font-size: 8vh;
     font-family: Monospace;
 }
+
+#settings {
+    margin: auto;
+}
+
+#settings > div {
+    padding: 3rem;
+    display: flex;
+}

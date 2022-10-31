@@ -97,7 +97,12 @@ function win() {
     document.body.style.backgroundColor = winner.color
     
     document.querySelectorAll('.cell').forEach(element => {
-    element.onclick = () => {}
+        element.onclick = () => {}
     })
 
+}
+
+
+document.querySelector('#open-settings').onclick = () => {
+    document.querySelector('#settings').showModal()
 }
