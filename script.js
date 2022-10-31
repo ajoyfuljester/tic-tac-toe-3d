@@ -20,6 +20,8 @@ const player2 = {
     color: '#f00',
 }
 
+const PLAYERS = [player1, player2]
+
 
 let isPlayer1Turn = true
 
@@ -28,21 +30,26 @@ let circleMoves = [[], [], [], []]
 let crossMoves = [[], [], [], []]
 
 function move(x, y, element) {
-    console.table({x, y})
+    let currentPlayer
     
-    if (element.innerHTML != '') return
     if (isPlayer1Turn) {
-        element.innerHTML = player1.symbol
-        player1.moves[y].push(x)
+        currentPlayer = player1
     } else {
-        element.innerHTML = player2.symbol
-        player2.moves[y].push(x)
+        currentPlayer = player2
     }
+
+    if (element.innerHTML != '') return
+
+    element.innerHTML = currentPlayer.symbol
+    currentPlayer.moves[y].push(x)
+
+
+
+    element.style.backgroundColor = currentPlayer.color
     
     checkForWin()
     
     isPlayer1Turn = !isPlayer1Turn
-    console.table({isPlayer1Turn})
 }
 
 function checkForWin() {
@@ -78,9 +85,7 @@ function checkForWin() {
         || (moves[1].includes(3) && moves[2].includes(5) && moves[3].includes(7))
         || (moves[1].includes(9) && moves[2].includes(5) && moves[3].includes(1))
         || (moves[1].includes(7) && moves[2].includes(5) && moves[3].includes(3))
-        )
-        
-         {
+        ) {
             win()
         }
     }
@@ -102,7 +107,61 @@ function win() {
 
 }
 
+const settingsDialog = document.querySelector('dialog')
 
 document.querySelector('#open-settings').onclick = () => {
-    document.querySelector('#settings').showModal()
+    settingsDialog.showModal()
+}
+
+document.querySelector('#save').onclick = () => {
+    for (let i = 1; i <= 2; i++) {
+        if (document.querySelector(`#P${i}Image`).value != '') {
+            PLAYERS[i - 1].symbol = `<img src="${document.querySelector(`#P${i}Image`).value}">`
+        }
+
+        if (document.querySelector(`#P${i}Color`).value != '') {
+            PLAYERS[i - 1].color = document.querySelector(`#P${i}Color`).value
+        }
+    }
+
+    settingsDialog.close()
+}
+
+document.querySelector('#cancel').onclick = () => settingsDialog.close()
+
+document.querySelector('#reset').onclick = () => {
+    document.body.style.backgroundColor = '#fff'
+    document.querySelectorAll('.cell').forEach((cell) => {
+        cell.innerHTML = ''
+
+        let backgroundColors = ['#fff', '#aaa', '#666']
+        cell.style.backgroundColor = backgroundColors[cell.parentElement.classList[1][1] - 1]
+        document.querySelector('.y2 > .x5').style.backgroundColor = '#000'
+
+        cell.onclick = function() {
+            move(parseInt(this.classList[1].split('').slice(1)),
+            parseInt(this.parentElement.classList[1].split('').slice(1)),
+            this)
+        }
+    })
+
+    document.querySelector('.y2 > .x5').onclick = null
+
+    for (const player of PLAYERS) {
+        player.moves = [[], [], [], []]
+    }
+
+    isPlayer1Turn = true
+}
+
+
+document.querySelector('#rotation').oninput = () => {
+    for (let level of document.querySelectorAll('.level')) {
+        level.style.transform = `rotateX(45deg) rotateZ(${document.querySelector('#rotation').value}deg)`
+    }
+}
+
+document.querySelector('#spacing').oninput = () => {
+    document.querySelector('.y1').style.translate = `0 ${document.querySelector('#spacing').value}vh`
+    document.querySelector('.y3').style.translate = `0 -${document.querySelector('#spacing').value}vh`
 }

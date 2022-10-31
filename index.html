@@ -7,35 +7,47 @@
     
     <body>
 
-        <button id="open-settings">Settings</button>
-
+        
         <dialog id="settings">
 
             <div>
 
-                <div id="P1">
+                <div>
+                    
+                    <div id="P1" class="player-settings">
 
-                    <label for="P1Image">Image URL:</label><br>
-                    <input type="text" class="image" id="P1Image"><br>
-                    <label for="P1Color">Color:</label><br>
-                    <input type="color" class="color" id="P1Color">
+                        <label for="P1Image">Image URL:</label>
+                        <input type="text" class="image" id="P1Image">
+                        <label for="P1Color">Color:</label>
+                        <input type="color" class="color" id="P1Color">
+                        <button id="save">Save</button>
 
-                </div>
+                    </div>
 
-                <div id="P2">
-
-                    <label for="image">Image URL:</label><br>
-                    <input type="text" class="image"><br>
-                    <label for="color">Color:</label><br>
-                    <input type="color" class="color">
-
+                    <div id="P2" class="player-settings">
+                        
+                        <label for="P2Image">Image URL:</label>
+                        <input type="text" class="image" id="P2Image">
+                        <label for="P2Color">Color:</label>
+                        <input type="color" class="color" id="P2Color">
+                        <button id="cancel">Cancel</button>
+                        
+                    </div>
+                    
                 </div>
 
             </div>
 
-
-
         </dialog>
+        
+        
+        <nav>
+            <button id="open-settings">Settings</button>
+            <button id="reset">Play again</button>
+        </nav>
+
+        <input type="range" id="rotation" min="-135" max="225" value="45" step="5">
+        <input type="range" id="spacing" min="0" max="65" value="25" step="5">
         
         <div id="board">
             <div class="level y1">

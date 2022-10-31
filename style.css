@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Rubik;
 }
 
 #board {
@@ -10,7 +11,6 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    gap: -50vh;
 }
 
 .level {
@@ -46,15 +46,15 @@
 }
 
 .y1 > .cell {
-    background-color: #ff0;
+    background-color: #fff;
 }
 
 .y2 > .cell {
-    background-color: #fa0;
+    background-color: #aaa;
 }
 
 .y3 > .cell {
-    background-color: #f00;
+    background-color: #666;
 }
 
 .y2 > .x5 {
@@ -79,6 +79,68 @@
 }
 
 #settings > div {
-    padding: 3rem;
     display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    gap: 3rem;
+}
+
+#settings > div > div {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+}
+
+#settings > div > div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+#settings input {
+    margin-bottom: 1rem;
+    width: 100%;
+    border: none;
+    border-bottom: 0.2em solid currentColor;
+    background-color: #0004;
+}
+
+button {
+    border: 0.2em solid currentColor;
+    background-color: transparent;
+    padding: 0.5em;
+    font-size: 18px;
+}
+
+.cell > img {
+    width: 100%;
+    height: 100%;
+}
+
+body > nav {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+#rotation {
+    width: 60vw;
+    bottom: 10vh;
+    left: 20vw;
+}
+
+#rotation, #spacing {
+    position: absolute;
+}
+
+#spacing {
+    left: 80vw;
+    height: 60vh;
+    top: 20vh;
+    writing-mode: sideways-lr;
 }
