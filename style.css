@@ -140,7 +140,8 @@ body > nav {
 
 #spacing {
     left: 80vw;
-    height: 60vh;
+    width: 60vh;
     top: 20vh;
-    writing-mode: sideways-lr;
+    transform: rotateZ(90deg);
+    transform-origin: 0;
 }
